@@ -1,0 +1,157 @@
+PRAGMA auto_vacuum = NONE;
+PRAGMA user_version = 0;
+
+CREATE TABLE cart (
+  cart_id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
+  product_id INTEGER NOT NULL,
+  user_id INTEGER NOT NULL
+);
+
+INSERT INTO cart (cart_id, product_id, user_id) VALUES
+(94, 8, 41),
+(91, 2, 33),
+(88, 6, 18),
+(98, 5, 45),
+(89, 3, 18),
+(96, 1, 46);
+
+CREATE TABLE details (
+  details_id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
+  user_id INTEGER NOT NULL,
+  product_id INTEGER NOT NULL,
+  address TEXT NOT NULL,
+  quantity REAL NOT NULL
+);
+
+
+INSERT INTO details (details_id, user_id, product_id, address, quantity) VALUES
+(23, 45, 4, 'Opposite of Remidy Medical, flat no. 5, Garia, Kolkata-700084', 2),
+(21, 41, 2, 'Pratapgarh, Garia, Kolkata-700103', 7),
+(22, 46, 6, 'Kamalgazi, Kolkata-700135', 5),
+(19, 33, 6, '2/3 E Block, Surat, Gujrat-395002', 5),
+(20, 40, 3, 'Mahamayatala, Garia, Kolkata-84', 3);
+
+
+CREATE TABLE orders (
+  order_id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
+  user_id INTEGER NOT NULL,
+  product_id INTEGER NOT NULL
+);
+
+INSERT INTO orders (order_id, user_id, product_id) VALUES
+(59, 45, 4),
+(58, 46, 6),
+(57, 41, 2),
+(55, 33, 6),
+(56, 40, 3);
+
+CREATE TABLE products (
+  product_id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
+  product_name TEXT NOT NULL,
+  product_price INTEGER NOT NULL,
+  product_description TEXT NOT NULL,
+  product_image TEXT NOT NULL
+);
+
+
+INSERT INTO products (product_id, product_name, product_price, product_description, product_image) VALUES
+(1, 'Alphonso', 250, 'Also known as Hapoo, this is the most expensive variety of mangoes in India. Maharashtra, Gujarat and Karnataka are its prime producers. It has a fibreless pulp and douses into the mouth as a smooth-creamy mango. This variety of mango is popular all over the world.\nSeason: May-June', 'Alphonso.jpg'),
+(2, 'Chaunsa', 200, 'The name was given by the Muslim Suri Emperor Sher Shah Suri. It is sweet, juicy and very nutritious. The heavenly sweet taste of this mango will make you lick up every drop of its nectar. It is mostly grown in the northern parts of India.\n\nSeason: July end-August', 'Chaunsa.jpg'),
+(3, 'Dasehri', 120, 'It is the oldest variety of Mangoes in India, since its origin can be traced back to almost 200 years ago. The sweet syrup of this mango makes you have at least 2-3 mangoes at a time. Uttar Pradesh is the largest producer of this variety of mangoes.\nSeason: June-July', 'Dasehri.jpg'),
+(4, 'Langra', 150, 'The mother tree of this variety exists in Varanasi. Since the owner of that tree was unfortunately lame, the mango was thus named as “Langra”. This variety is distinctively fibrous, with a unique taste as well. It is majorly grown in Haryana, Bihar, Uttar Pradesh and West Bengal.\nSeason: Mid-July to August', 'Langra.jpeg'),
+(5, 'Banganapalli', 140, 'These mangoes have a very beautiful yellow color and are sweet and fibreless. It is the most popular variety of mangoes which comes straight from Andhra Pradesh.\nSeason: April to June', 'Banganapalli.jpg'),
+(6, 'Kesar', 110, 'These mangoes have a very beautiful yellow color and are sweet and fibreless. It is the most popular variety of mangoes which comes straight from Andhra Pradesh.\nSeason: April to June', 'Kesar.jpeg'),
+(7, 'Neelam', 200, 'This is one variety that grows throughout the country. With its specialty in Hyderabad, it is a large-yielding variety of mangoes. Though it arrives early in the season, the best variety is available only in June.\nSeason: May-July', 'Neelam.jpg'),
+(8, 'Sindoora', 220, 'Its reddish color at the top has entitled this variety with the name of Sindoora. Extremely juicy and pulpy, this mango is one of the tastiest mangoes one can ever have.\nSeason: Mid-May to Mid-June', 'Sindoora.jpg');
+
+CREATE TABLE reviews (
+  review_id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
+  product_id INTEGER NOT NULL,
+  user_id INTEGER NOT NULL,
+  review_heading TEXT NOT NULL,
+  review_text TEXT NOT NULL
+);
+
+
+INSERT INTO reviews (review_id, product_id, user_id, review_heading, review_text) VALUES
+(34, 5, 34, 'This is so sweet!', 'Unique sweet and rich taste. They are moderately juicy and aromatic with a maize-yellow colour. Love it!'),
+(33, 1, 34, 'Best of its all', 'Raw mango is a sweet-smelling fruit which is liked by al for its tart flavor. The colour varies in shades of greens and the inner flesh is white in colour. Its potent health benefits makes totapuri mango puree concentrate - an important food item.'),
+(28, 8, 33, 'Never tried before', 'I tried it for the first time and oh boi its great! Must try this one'),
+(37, 2, 40, 'Takes me back to childhood.', 'Whenever I have this it always reminds me of my childhood. This will always be my favorite.'),
+(26, 1, 33, 'A bit expensive!', 'These are the best and a bit costly, but thanks to Mangola for selling me with a discount of 25%. #happy_shopping :D'),
+(25, 4, 33, 'I love this variety!', 'One of the best mangoes compared to all its categories. I love this one.'),
+(35, 4, 37, 'Great! This is my favourite.', 'I love this one. It tastes so great man!'),
+(36, 4, 39, 'Its a bit over priced.', 'Mangola you are selling it a bit over priced. Otherwise its all good.'),
+(38, 6, 40, 'No words can describe howmuch I love these.', 'This has always been my favorite. I always reccomend this variety ti others.'),
+(39, 5, 41, 'Thanks to Mangola for the discount1', 'I bought like 8Kgs of these and got a discount of 40% on it. Thanks to mangola. Happy Shopping.'),
+(40, 7, 43, 'So delicious!', 'Just one look at  the picture brings water to my mouth.'),
+(41, 7, 40, 'Over priced.', 'Dude Mangola is selling this over-priced. I am not buying it. Sorry!'),
+(42, 7, 44, 'This is love', 'My fav and will always be my fav. I love it more than Alponso'),
+(43, 1, 36, 'This is the best!', 'Its suites my standards! This is the best!'),
+(53, 2, 36, 'I was importing them from Canada', 'I love them so much that I decided to import them from Canada but then I came across Mangola.'),
+(54, 8, 39, 'This variety is only for true mango lovers', 'Tastes good, smells good, and the company delivers good.'),
+(55, 7, 46, 'Inshallah its great!', 'I am buying it for all my wives and children.'),
+(56, 5, 45, 'I do not like this variety.', 'I do not know why but I kind of do not like this variety.'),
+(57, 4, 44, 'Superb', 'Just amazing! And mangola delivered before expected time of delivery.'),
+(58, 3, 42, 'Loved it!', 'It took a while for mangola to deliver but a wait for mangoes is worth a while.'),
+(59, 3, 41, 'I can have this all day', 'I like these soo much that I can have it all day.'),
+(60, 3, 40, 'I am returning home this Monday', 'I am returning home this Monday hope it gets delivered by then.'),
+(61, 6, 39, 'Very Sweet', 'Its so sweet in test!'),
+(62, 1, 39, 'Its so juicy', 'The best variety of mangoes.'),
+(63, 6, 33, 'Great!', 'Its very nice!');
+
+
+CREATE TABLE users (
+  user_id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
+  name TEXT NOT NULL,
+  email TEXT NOT NULL,
+  password TEXT NOT NULL
+);
+
+INSERT INTO users (user_id, name, email, password) VALUES
+(42, 'Dhvanil', 'dhvanilpatel@gmail.com', 'dhvanil'),
+(41, 'Chayan', 'chayanmaida@hotmail.com', 'chayan'),
+(40, 'Bananta', 'banantabala@gmail.com', 'bananta'),
+(38, 'Anindo', 'anindodas@yahoo.in', 'anindo'),
+(39, 'Vishal', 'vishalrc_1@gmail.com', 'vishal'),
+(37, 'Agnish', 'agnishgupta@gmail.com', 'agnish'),
+(36, 'Mamta', 'mamtabanarjee@tmc.com', 'mamta'),
+(19, 'Admin', 'admin@mangola.com', '1234'),
+(35, 'Lalu', 'yadav_lalu@bihar.com', 'bihari'),
+(31, '', '', ''),
+(34, 'Rahul', 'gandhi.rahul@congress.com', 'abcd'),
+(33, 'Modi', 'narendra_modi@bjp.com', 'namo'),
+(18, 'Anirban', 'anirban@anirban.com', '1234'),
+(43, 'Niloy', 'niloyburdhan@hotmail.com', 'niloy'),
+(44, 'Rana Pratap', 'ranapratap@hotmail.com', 'ranapratap'),
+(45, 'Sourav', 'souravnaskar@rediffmail.com', 'sourav'),
+(46, 'Subhradip', 'subhradiprustyroy@rediffmail.com', 'rusty');
+
+
+CREATE TABLE wishlist (
+  wishlist_id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
+  product_id INTEGER NOT NULL,
+  user_id INTEGER NOT NULL
+);
+
+INSERT INTO wishlist (wishlist_id, product_id, user_id) VALUES
+(54, 5, 36),
+(53, 5, 33),
+(56, 7, 39),
+(55, 8, 40),
+(60, 1, 41),
+(50, 1, 18),
+(52, 3, 33),
+(51, 8, 18),
+(58, 6, 42),
+(59, 4, 42),
+(61, 7, 46),
+(62, 2, 46),
+(63, 1, 45),
+(64, 2, 45);
+
+
+CREATE INDEX product_id ON wishlist (product_id);
+CREATE INDEX user_id ON wishlist (user_id);
+CREATE INDEX product_id_2 ON wishlist (product_id);
+CREATE INDEX user_id_2 ON wishlist (user_id);
